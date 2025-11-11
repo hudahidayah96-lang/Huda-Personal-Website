@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f7ff;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #6a0dad, #8a2be2);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+            min-height: calc(100vh - 160px);
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            color: #6a0dad;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: #8a2be2;
+            border-radius: 2px;
+        }
+        
+        h2 {
+            color: #8a2be2;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Profile Section */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #8a2be2;
+            box-shadow: 0 8px 20px rgba(106, 13, 173, 0.3);
+            transition: transform 0.5s ease;
+        }
+        
+        .profile-img:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+        
+        .profile-info {
+            flex: 1;
+        }
+        
+        /* Card Layout */
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hobbies Grid */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .hobby-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .hobby-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(106, 13, 173, 0.2);
+        }
+        
+        .hobby-icon {
+            font-size: 2.5rem;
+            color: #8a2be2;
+            margin-bottom: 1rem;
+        }
+        
+        /* Strengths & Weaknesses */
+        .sw-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .strengths, .weaknesses {
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .strengths {
+            background-color: rgba(138, 43, 226, 0.1);
+            border-left: 4px solid #8a2be2;
+        }
+        
+        .weaknesses {
+            background-color: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid #ffd700;
+        }
+        
+        .sw-list {
+            list-style-type: none;
+        }
+        
+        .sw-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .sw-list li::before {
+            content: '•';
+            color: #8a0dad;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Media Elements */
+        .media-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .video-container, .audio-container {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        video, audio {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Social Media Section */
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+        
+        .social-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            width: 220px;
+        }
+        
+        .social-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .social-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .instagram {
+            color: #E1306C;
+        }
+        
+        .tiktok {
+            color: #000000;
+        }
+        
+        .social-username {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            color: #333;
+        }
+        
+        .social-handle {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, #6a0dad, #8a2be2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(106, 13, 173, 0.4);
+        }
+        
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .nav-btn.prev {
+            background: linear-gradient(135deg, #8a2be2, #6a0dad);
+        }
+        
+        .nav-btn.next {
+            background: linear-gradient(135deg, #6a0dad, #8a2be2);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #6a0dad;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Instructions Section */
+        .instructions {
+            background-color: #f0e6ff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid #8a2be2;
+        }
+        
+        .instructions h3 {
+            color: #6a0dad;
+            margin-bottom: 1rem;
+        }
+        
+        .instructions ol {
+            margin-left: 1.5rem;
+        }
+        
+        .instructions li {
+            margin-bottom: 0.8rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .sw-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .nav-links li {
+                margin-left: 0;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .social-media {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">HUDA PERSONAL SPACE</div>
+                <ul class="nav-links">
+                    <li><a href="#" data-page="home">About Me</a></li>
+                    <li><a href="#" data-page="hobbies">Hobbies</a></li>
+                    <li><a href="#" data-page="passions">Passions</a></li>
+                    <li><a href="#" data-page="strengths">Academic Background</a></li>
+                    <li><a href="#" data-page="contact">Socia Media</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <!-- Home/About Me Page -->
+        <section id="home" class="page active">
+            <h1>About Me</h1>
+                        
+            <div class="profile">
+                <!-- CHANGE YOUR PROFILE PICTURE HERE -->
+                <!-- Replace the src attribute with your own image URL or local file path -->
+                <img src="C:\Users\User\OneDrive\Pictures\Huda 1.jpg" alt="Profile Picture" class="profile-img" id="profilePicture">
+                
+                <div class="profile-info">
+                    <h2>Hello, I'm Huda</h2>
+                                
+            <div class="card">
+                <h2>My Background</h2>
+                <p>My full name is NURHUDA HIDAYAH BINTI MOHD RASDI. I'm from Kulim, kedah and I'm proud to be a Kedahan. I'm 20 years old and I have 5 siblings.</p>
+                <p>I'm currently further my study as a Diploma student in Information Management at UiTM Kedah. The purpose i create  this website is to share a little bit of my life with others eventhough the main reason is because this is my assignment.</p>
+            </div>
+                        
+            <div class="nav-buttons">
+                <button class="nav-btn prev" disabled>
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" data-next="hobbies">
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Hobbies Page -->
+        <section id="hobbies" class="page">
+            <h1>My Hobbies</h1>
+            <p>In my free time, I enjoy various activities that help me relax and explore new interests. Here are some of my favorite hobbies:</p>
+            
+            <div class="hobbies-grid">
+                <div class="hobby-item">
+                    <div class="hobby-icon">📚</div>
+                    <h3>Reading</h3>
+                    <p>I love reading books across different genres, from fanfiction to thriller. It helps me create new perspectives and knowledge. I usually read on Watpad, it is an Ebook.</p>
+                </div>
+                <div class="hobby-item">
+                    <div class="hobby-icon">🎵</div>
+                    <h3>Music</h3>
+                    <p>I can say that listening to music is my theraphy. I literally listening to every genres like Kpop, Metal, Rock, RnB and HipHop. My favourite artist is Cortis, Oasis and Pierce The Veil!</p>
+                </div>
+                <div class="hobby-item">
+                    <div class="hobby-icon">🎬</div>
+                    <h3>K-Dramas & Movies</h3>
+                    <p>I love binge watching Kdrama or movies because time will pass by more quickly.I'm currently watching Would You Marry Me? Also I love to watch horror movies. </p>
+                </div>
+            </div>
+            
+            <div class="media-container">
+                <div class="video-container">
+                    <h3>My Passion Project</h3>
+                    <video controls>
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="audio-container">
+                    <h3>Inspirational Audio</h3>
+                    <audio controls>
+                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev" data-prev="home">
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" data-next="passions">
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Passion Page -->
+        <section id="passions" class="page">
+            <h1>My Passion </h1>
+            <div class="card">
+                <h2>MY LOVE TOWARDS MUSIC</h2>
+                <p>My passion for music lies in its incredible ability to speak directly to the soul. As an avid listener, I'm constantly amazed by how melodies and lyrics can capture feelings I struggle to express in words. Music is my emotional anchor and creative inspiration, even from the listener's perspective.</p>
+                <p>My love for music isn't about technical skill but about emotional connection. I'm passionate about how the right song at the right moment can change your entire outlook, heal emotional wounds, or make you feel understood. Music is the universal language that speaks directly to my heart, and I'm forever grateful to the artists who create these emotional landscapes for us to explore.</p>
+            </div>
+            
+            <div class="card">
+                <h2>PERSONAL GROWTH</h2>
+                <p>I'm deeply passionate about personal growth and becoming the best version of myself. This involves continuous self-reflection, setting meaningful goals, and developing habits that align with my values. I believe that small, consistent improvements compound into significant life changes over time.</p>
+                <p>My passion for personal development stems from the belief that we all have untapped potential waiting to be discovered. I'm committed to pushing my boundaries, overcoming limitations, and helping others do the same through sharing insights and experiences.</p>
+            </div>
+            
+            <div class="card">
+                <h2>SKILL DEVELOPMENT FOCUS</h2>
+                <p>As a student, I'm passionate about the process of acquiring knowledge and developing practical skills that will serve me beyond the classroom. I see each semester as an opportunity to not just earn grades, but to build a toolkit of critical thinking, problem-solving, and adaptability that will prepare me for future challenges.</p>
+                        
+            <div class="nav-buttons">
+                <button class="nav-btn prev" data-prev="hobbies">
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" data-next="strengths">
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+        
+	 <!-- Academic Background Page -->
+         <section id="academic" class="page">
+            <h1>Academic Background</h1>
+            <p>My educational journey has been focused on building a strong foundation of knowledge and developing skills that will serve me in my future endeavors. Here's an overview of my academic background:</p>
+            
+            <div class="academic-container">
+                <div class="education">
+                    <h2>Education Timeline</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2021 - Present</div>
+                            <div class="timeline-title">University Name</div>
+                            <div class="timeline-desc">Bachelor of Science in Computer Science<br>Current GPA: 3.8/4.0</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2017 - 2021</div>
+                            <div class="timeline-title">High School Name</div>
+                            <div class="timeline-desc">High School Diploma<br>Graduated with Honors</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills">
+                    <h2>Academic Skills & Achievements</h2>
+                    <ul class="academic-list">
+                        <li><strong>Technical Skills:</strong> HTML/CSS, JavaScript, Python, Data Analysis</li>
+                        <li><strong>Research Skills:</strong> Academic writing, Data collection, Critical analysis</li>
+                        <li><strong>Academic Honors:</strong> Dean's List (3 semesters), Academic Scholarship recipient</li>
+                        <li><strong>Relevant Coursework:</strong> Web Development, Data Structures, Algorithms, Database Systems</li>
+                        <li><strong>Languages:</strong> English (Native), Spanish (Intermediate)</li>
+                    </ul>
+                </div>
+            </div>
+                        
+            <div class="nav-buttons">
+                <button class="nav-btn prev" data-prev="passions">
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" data-next="contact">
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <h1>Get In Touch</h1>
+            <p>Follow me on social media to stay updated with my latest projects and content!</p>
+            
+            <div class="social-media">
+                <div class="social-card">
+                    <div class="social-icon instagram">📷</div>
+                    <h3>Instagram</h3>
+                    <p class="social-handle">@alexjohnson</p>
+                    <a href="https://instagram.com/alexjohnson" class="social-btn" target="_blank">Follow Me</a>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon tiktok">🎵</div>
+                    <h3>TikTok</h3>
+                    <p class="social-handle">@alexj_creates</p>
+                    <a href="https://tiktok.com/@alexj_creates" class="social-btn" target="_blank">Follow Me</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Why Connect on Social Media?</h2>
+                <p>On Instagram, I share behind-the-scenes content, design inspiration, and personal updates. On TikTok, I create short videos about web development tips, tech trends, and creative projects.</p>
+                <p>Following me on these platforms is the best way to see my latest work and get to know me better!</p>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev" data-prev="strengths">
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" disabled>
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Alex Johnson. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://instagram.com/alexjohnson" target="_blank">📷 Instagram</a>
+                <a href="https://tiktok.com/@alexj_creates" target="_blank">🎵 TikTok</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const pages = document.querySelectorAll('.page');
+            const nextButtons = document.querySelectorAll('.nav-btn.next');
+            const prevButtons = document.querySelectorAll('.nav-btn.prev');
+            
+            // Navigation via menu
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all pages and links
+                    pages.forEach(page => page.classList.remove('active'));
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    
+                    // Add active class to current page and link
+                    const targetPage = this.getAttribute('data-page');
+                    document.getElementById(targetPage).classList.add('active');
+                    this.classList.add('active');
+                });
+            });
+            
+            // Next button functionality
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.disabled) return;
+                    
+                    const nextPage = this.getAttribute('data-next');
+                    if (nextPage) {
+                        // Remove active class from all pages and links
+                        pages.forEach(page => page.classList.remove('active'));
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        
+                        // Add active class to next page and corresponding link
+                        document.getElementById(nextPage).classList.add('active');
+                        document.querySelector(`.nav-links a[data-page="${nextPage}"]`).classList.add('active');
+                    }
+                });
+            });
+            
+            // Previous button functionality
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.disabled) return;
+                    
+                    const prevPage = this.getAttribute('data-prev');
+                    if (prevPage) {
+                        // Remove active class from all pages and links
+                        pages.forEach(page => page.classList.remove('active'));
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        
+                        // Add active class to previous page and corresponding link
+                        document.getElementById(prevPage).classList.add('active');
+                        document.querySelector(`.nav-links a[data-page="${prevPage}"]`).classList.add('active');
+                    }
+                });
+            });
+            
+            // Profile picture upload functionality
+            const imageUpload = document.getElementById('imageUpload');
+            const profilePicture = document.getElementById('profilePicture');
+            
+            if (imageUpload && profilePicture) {
+                imageUpload.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            profilePicture.src = event.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

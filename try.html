@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f7ff;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #6a0dad, #8a2be2);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+            min-height: calc(100vh - 160px);
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            color: #6a0dad;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: #8a2be2;
+            border-radius: 2px;
+        }
+        
+        h2 {
+            color: #8a2be2;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Profile Section */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #8a2be2;
+            box-shadow: 0 8px 20px rgba(106, 13, 173, 0.3);
+            transition: transform 0.5s ease;
+        }
+        
+        .profile-img:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+        
+        .profile-info {
+            flex: 1;
+        }
+        
+        /* Card Layout */
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hobbies Grid */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .hobby-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .hobby-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(106, 13, 173, 0.2);
+        }
+        
+        .hobby-icon {
+            font-size: 2.5rem;
+            color: #8a2be2;
+            margin-bottom: 1rem;
+        }
+        
+        /* Strengths & Weaknesses */
+        .sw-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .strengths, .weaknesses {
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        
+        .strengths {
+            background-color: rgba(138, 43, 226, 0.1);
+            border-left: 4px solid #8a2be2;
+        }
+        
+        .weaknesses {
+            background-color: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid #ffd700;
+        }
+        
+        .sw-list {
+            list-style-type: none;
+        }
+        
+        .sw-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .sw-list li::before {
+            content: '•';
+            color: #8a0dad;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Media Elements */
+        .media-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .video-container, .audio-container {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        video, audio {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #6a0dad;
+            font-weight: 500;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #8a2be2;
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+        }
+        
+        button {
+            background: linear-gradient(135deg, #6a0dad, #8a2be2);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(106, 13, 173, 0.3);
+        }
+        
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .nav-btn.prev {
+            background: linear-gradient(135deg, #8a2be2, #6a0dad);
+        }
+        
+        .nav-btn.next {
+            background: linear-gradient(135deg, #6a0dad, #8a2be2);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #6a0dad;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .sw-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .nav-links li {
+                margin-left: 0;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Huda Little Space</div>
+                <ul class="nav-links">
+                    <li><a href="#" data-page="home">About Me</a></li>
+                    <li><a href="#" data-page="hobbies">Hobbies</a></li>
+                    <li><a href="#" data-page="passions">Passions</a></li>
+                    <li><a href="#" data-page="strengths">Strengths & Weaknesses</a></li>
+                    <li><a href="#" data-page="contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <!-- Home/About Me Page -->
+        <section id="home" class="page active">
+            <h1>About Me</h1>
+            <div class="profile">
+                <img src="C:\Users\User\OneDrive\Pictures\Huda 1.jpg"alt="Profile Picture" class="profile-img">
+                <div class="profile-info">
+                    <h2>Hello, I'm Huda Hidayah</h2>
+                    <p>My full name is NurHuda Hidayah binti Mohd Rasdi. I'm a 20 years old. My hometown is Kulim, Kedah. I'm a fourth child of 5.My favorite color is purple, black or anything that looks good together.</p>
+                    <p>I'm a currently further my study at UiTM Kedah in Diploma Information Management. I'm on my fifth semester which is my last semester as a diploma student.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>My Background</h2>
+                <p>I graduated with a degree in Computer Science from Tech University and have since worked with several tech companies and startups. My expertise includes front-end development, UI/UX design, and responsive web design.</p>
+                <p>I'm currently working as a Senior Web Developer at Creative Solutions Inc., where I lead a team of developers in creating innovative web experiences for our clients.</p>
+            </div>
+            
+            <div class="media-container">
+                <div class="video-container">
+                    <h3>My Introduction Video</h3>
+                    <video controls>
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="audio-container">
+                    <h3>My Favorite Sound</h3>
+                    <audio controls>
+                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev" disabled>
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" data-next="hobbies">
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Hobbies Page -->
+        <section id="hobbies" class="page">
+            <h1>My Hobbies</h1>
+            <p>In my free time, I enjoy various activities that help me relax and explore new interests. Here are some of my favorite hobbies:</p>
+            
+            <div class="hobbies-grid">
+                <div class="hobby-item">
+                    <div class="hobby-icon">📚</div>
+                    <h3>Reading</h3>
+                    <p>I love reading books across different genres, from science fiction to biographies. It helps me gain new perspectives and knowledge.</p>
+                </div>
+                <div class="hobby-item">
+                    <div class="hobby-icon">🎵</div>
+                    <h3>Music</h3>
+                    <p>I enjoy playing the guitar and discovering new music. It's a great way to unwind after a long day.</p>
+                </div>
+                <div class="hobby-item">
+                    <div class="hobby-icon">✈️</div>
+                    <h3>Travel</h3>
+                    <p>Exploring new places and cultures broadens my horizons and provides inspiration for my work.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Why Hobbies Matter</h2>
+                <p>Engaging in hobbies helps me maintain a balanced lifestyle and prevents burnout. They provide opportunities to learn new skills, meet like-minded people, and take a break from the digital world.</p>
+                <p>I believe that having diverse interests makes me a more well-rounded individual and often provides unexpected inspiration for my professional work.</p>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev" data-prev="home">
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" data-next="passions">
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Passions Page -->
+        <section id="passions" class="page">
+            <h1>My Passions</h1>
+            <div class="card">
+                <h2>Web Development & Design</h2>
+                <p>I'm deeply passionate about creating beautiful, functional, and accessible websites. The ever-evolving nature of web technologies keeps me excited and motivated to learn continuously.</p>
+                <p>I believe that good design should not only look appealing but also solve problems and enhance user experiences.</p>
+            </div>
+            
+            <div class="card">
+                <h2>Education & Mentoring</h2>
+                <p>Sharing knowledge and helping others grow in their tech careers is something I'm truly passionate about. I regularly mentor junior developers and participate in coding workshops.</p>
+                <p>I firmly believe that the tech community grows stronger when we support and uplift each other.</p>
+            </div>
+            
+            <div class="card">
+                <h2>Sustainability & Environment</h2>
+                <p>I'm committed to promoting sustainable practices both in my personal life and professional work. I strive to create digital solutions that are efficient and environmentally conscious.</p>
+                <p>This passion extends to supporting organizations that work towards environmental conservation and climate action.</p>
+            </div>
+            
+            <div class="media-container">
+                <div class="video-container">
+                    <h3>My Passion Project</h3>
+                    <video controls>
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="audio-container">
+                    <h3>Inspirational Audio</h3>
+                    <audio controls>
+                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev" data-prev="hobbies">
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" data-next="strengths">
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Strengths & Weaknesses Page -->
+        <section id="strengths" class="page">
+            <h1>Strengths & Weaknesses</h1>
+            <p>Understanding my strengths and areas for improvement helps me grow both personally and professionally. Here's an honest assessment:</p>
+            
+            <div class="sw-container">
+                <div class="strengths">
+                    <h2>My Strengths</h2>
+                    <ul class="sw-list">
+                        <li><strong>Problem-Solving:</strong> I enjoy tackling complex challenges and finding innovative solutions.</li>
+                        <li><strong>Adaptability:</strong> I quickly adjust to new technologies and changing project requirements.</li>
+                        <li><strong>Attention to Detail:</strong> I ensure that every aspect of my work meets high-quality standards.</li>
+                        <li><strong>Collaboration:</strong> I work effectively in team settings and value diverse perspectives.</li>
+                        <li><strong>Continuous Learning:</strong> I'm always seeking to expand my knowledge and skills.</li>
+                    </ul>
+                </div>
+                
+                <div class="weaknesses">
+                    <h2>Areas for Improvement</h2>
+                    <ul class="sw-list">
+                        <li><strong>Perfectionism:</strong> Sometimes I spend too much time perfecting details that may not significantly impact the final product.</li>
+                        <li><strong>Delegation:</strong> I'm working on trusting others with important tasks instead of taking everything on myself.</li>
+                        <li><strong>Public Speaking:</strong> While comfortable in small groups, I'm improving my confidence in larger presentations.</li>
+                        <li><strong>Saying No:</strong> I tend to take on too many projects because I have difficulty turning down interesting opportunities.</li>
+                        <li><strong>Work-Life Balance:</strong> I'm learning to set clearer boundaries between work and personal time.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>My Growth Mindset</h2>
+                <p>I view weaknesses not as permanent limitations but as opportunities for growth. I actively work on improving these areas through practice, feedback, and self-reflection.</p>
+                <p>By acknowledging both my strengths and weaknesses, I can leverage what I do well while continuously developing in areas that need improvement.</p>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev" data-prev="passions">
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" data-next="contact">
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <h1>Get In Touch</h1>
+            <p>I'd love to hear from you! Whether you have a project in mind, want to collaborate, or just want to say hello, feel free to reach out.</p>
+            
+            <div class="contact-form">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Your Email</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" placeholder="Enter the subject">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" rows="5" placeholder="Enter your message"></textarea>
+                </div>
+                
+                <button type="submit">Send Message</button>
+            </div>
+            
+            <div class="card">
+                <h2>Other Ways to Connect</h2>
+                <p><strong>Email:</strong> alex.johnson@example.com</p>
+                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                <p><strong>Location:</strong> San Francisco, CA</p>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev" data-prev="strengths">
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" disabled>
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Alex Johnson. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">📘</a>
+                <a href="#">🐦</a>
+                <a href="#">📷</a>
+                <a href="#">💼</a>
+                <a href="#">📱</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const pages = document.querySelectorAll('.page');
+            const nextButtons = document.querySelectorAll('.nav-btn.next');
+            const prevButtons = document.querySelectorAll('.nav-btn.prev');
+            
+            // Navigation via menu
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all pages and links
+                    pages.forEach(page => page.classList.remove('active'));
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    
+                    // Add active class to current page and link
+                    const targetPage = this.getAttribute('data-page');
+                    document.getElementById(targetPage).classList.add('active');
+                    this.classList.add('active');
+                });
+            });
+            
+            // Next button functionality
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.disabled) return;
+                    
+                    const nextPage = this.getAttribute('data-next');
+                    if (nextPage) {
+                        // Remove active class from all pages and links
+                        pages.forEach(page => page.classList.remove('active'));
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        
+                        // Add active class to next page and corresponding link
+                        document.getElementById(nextPage).classList.add('active');
+                        document.querySelector(`.nav-links a[data-page="${nextPage}"]`).classList.add('active');
+                    }
+                });
+            });
+            
+            // Previous button functionality
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.disabled) return;
+                    
+                    const prevPage = this.getAttribute('data-prev');
+                    if (prevPage) {
+                        // Remove active class from all pages and links
+                        pages.forEach(page => page.classList.remove('active'));
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        
+                        // Add active class to previous page and corresponding link
+                        document.getElementById(prevPage).classList.add('active');
+                        document.querySelector(`.nav-links a[data-page="${prevPage}"]`).classList.add('active');
+                    }
+                });
+            });
+            
+            // Add some interactive elements
+            const profileImg = document.querySelector('.profile-img');
+            if (profileImg) {
+                profileImg.addEventListener('mouseenter', function() {
+                    this.style.transform = 'rotate(5deg) scale(1.05)';
+                });
+                
+                profileImg.addEventListener('mouseleave', function() {
+                    this.style.transform = 'rotate(0) scale(1)';
+                });
+            }
+            
+            // Form submission (basic)
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! I will get back to you soon.');
+                    this.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huda Personal Website</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f7ff;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%236a0dad' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #6a0dad, #8a2be2);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+            min-height: calc(100vh - 160px);
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            color: #6a0dad;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(106, 13, 173, 0.05));
+            border-radius: 15px;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            width: 40px;
+            height: 4px;
+            background: linear-gradient(90deg, #8a2be2, #6a0dad);
+            border-radius: 2px;
+        }
+        
+        h2 {
+            color: #8a2be2;
+            margin: 1.5rem 0 1rem;
+            padding-left: 1rem;
+            border-left: 4px solid #8a2be2;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Profile Section */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #8a2be2;
+            box-shadow: 0 8px 20px rgba(106, 13, 173, 0.3);
+            transition: transform 0.5s ease;
+            position: relative;
+        }
+        
+        .profile-img::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6a0dad, #8a2be2);
+            z-index: -1;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+        
+        .profile-img:hover::before {
+            opacity: 0.5;
+        }
+        
+        .profile-info {
+            flex: 1;
+        }
+        
+        /* Card Layout */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #8a2be2, #6a0dad);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hobbies Grid */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .hobby-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            position: relative;
+        }
+        
+        .hobby-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #8a2be2, #6a0dad);
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .hobby-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(106, 13, 173, 0.2);
+        }
+        
+        .hobby-icon {
+            font-size: 2.5rem;
+            color: #8a2be2;
+            margin-bottom: 1rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .hobby-item:hover .hobby-icon {
+            transform: scale(1.2);
+        }
+        
+        /* K-Drama Section */
+        .kdrama-section {
+            margin: 3rem 0;
+        }
+        
+        .kdrama-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .kdrama-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        
+        .kdrama-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(106, 13, 173, 0.2);
+        }
+        
+        .kdrama-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .kdrama-card:hover .kdrama-img {
+            transform: scale(1.05);
+        }
+        
+        .kdrama-info {
+            padding: 1.2rem;
+        }
+        
+        .kdrama-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #6a0dad;
+        }
+        
+        .kdrama-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Academic Background Section */
+        .academic-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .education, .skills {
+            padding: 1.5rem;
+            border-radius: 15px;
+        }
+        
+        .education {
+            background-color: rgba(138, 43, 226, 0.1);
+            border-left: 4px solid #8a2be2;
+        }
+        
+        .skills {
+            background-color: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid #ffd700;
+        }
+        
+        .academic-list {
+            list-style-type: none;
+        }
+        
+        .academic-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .academic-list li::before {
+            content: '✨';
+            position: absolute;
+            left: 0;
+        }
+        
+        .timeline {
+            margin: 2rem 0;
+        }
+        
+        .timeline-item {
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            border-left: 3px solid #8a2be2;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #8a2be2;
+            box-shadow: 0 0 0 4px rgba(138, 43, 226, 0.2);
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: #6a0dad;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .timeline-desc {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* Academic Images Section */
+        .academic-images {
+            margin: 3rem 0;
+        }
+        
+        .academic-image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .academic-image-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        
+        .academic-image-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(106, 13, 173, 0.2);
+        }
+        
+        .academic-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .academic-image-card:hover .academic-img {
+            transform: scale(1.05);
+        }
+        
+        .academic-img-info {
+            padding: 1.2rem;
+        }
+        
+        .academic-img-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #6a0dad;
+        }
+        
+        .academic-img-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Media Elements */
+        .media-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .video-container, .audio-container {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        video, audio {
+            width: 100%;
+            border-radius: 8px;
+        }
+        
+        /* Social Media Section */
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+        
+        .social-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 20px;
+            background: white;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            width: 220px;
+            border: 1px solid rgba(138, 43, 226, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #8a2be2, #6a0dad);
+        }
+        
+        .social-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .social-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-card:hover .social-icon {
+            transform: scale(1.1);
+        }
+        
+        .instagram {
+            color: #E1306C;
+        }
+        
+        .tiktok {
+            color: #000000;
+        }
+        
+        .social-username {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0.5rem 0;
+            color: #333;
+        }
+        
+        .social-handle {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(135deg, #6a0dad, #8a2be2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(106, 13, 173, 0.4);
+        }
+        
+        /* Navigation Buttons */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn.prev {
+            background: linear-gradient(135deg, #8a2be2, #6a0dad);
+        }
+        
+        .nav-btn.next {
+            background: linear-gradient(135deg, #6a0dad, #8a2be2);
+        }
+        
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(106, 13, 173, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #6a0dad, #8a2be2);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Instructions Section */
+        .instructions {
+            background-color: #f0e6ff;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid #8a2be2;
+            position: relative;
+        }
+        
+        .instructions::before {
+            content: '💡';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 1.5rem;
+            background: white;
+            padding: 5px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .instructions h3 {
+            color: #6a0dad;
+            margin-bottom: 1rem;
+        }
+        
+        .instructions ol {
+            margin-left: 1.5rem;
+        }
+        
+        .instructions li {
+            margin-bottom: 0.8rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .academic-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .nav-links li {
+                margin-left: 0;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .social-media {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .kdrama-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            .academic-image-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">🌟Let's Get to Know Me</div>
+                <ul class="nav-links">
+                    <li><a href="#" data-page="home">About Me</a></li>
+                    <li><a href="#" data-page="hobbies">Hobbies</a></li>
+                    <li><a href="#" data-page="passions">Passions</a></li>
+                    <li><a href="#" data-page="academic">Academic Background</a></li>
+                    <li><a href="#" data-page="contact">Social Media</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <!-- Home/About Me Page -->
+        <section id="home" class="page active">
+            <h1>About Me</h1>
+                       
+            <div class="profile">
+                <!-- CHANGE YOUR PROFILE PICTURE HERE -->
+                <!-- Replace the src attribute with your own image URL or local file path -->
+                <img src="C:\Users\User\OneDrive\Pictures\Huda 1.jpg" alt="Profile Picture" class="profile-img" id="profilePicture">
+                
+                <div class="profile-info">
+                    <h2>Hello, I'm Huda</h2>
+                                
+            <div class="card">
+                <h2>My Background</h2>
+                <p>My full name is NURHUDA HIDAYAH BINTI MOHD RASDI. I'm from Kulim, kedah and I'm proud to be a Kedahan. I'm 20 years old and I have 5 siblings.</p>
+                <p>I'm currently further my study as a Diploma student in Information Management at UiTM Kedah. The purpose i create  this website is to share a little bit of my life with others eventhough the main reason is because this is my assignment.</p>
+            </div>
+                        
+            <div class="nav-buttons">
+                <button class="nav-btn prev" disabled>
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" data-next="hobbies">
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Hobbies Page -->
+        <section id="hobbies" class="page">
+            <h1>My Hobbies</h1>
+            <p>In my free time, I enjoy various activities that help me relax and explore new interests. Here are some of my favorite hobbies:</p>
+            
+            <div class="hobbies-grid">
+                <div class="hobby-item">
+                    <div class="hobby-icon">📚</div>
+                    <h3>Reading</h3>
+                    <p>I love reading books across different genres, from fanfiction to thriller. It helps me create new perspectives and knowledge. I usually read on Watpad, it is an Ebook.</p>
+                </div>
+                <div class="hobby-item">
+                    <div class="hobby-icon">🎵</div>
+                    <h3>Music</h3>
+                    <p>I can say that listening to music is my theraphy. I literally listening to every genres like Kpop, Metal, Rock, RnB and HipHop. My favourite artist is Cortis, Oasis and Pierce The Veil!</p>
+                </div>
+                <div class="hobby-item">
+                    <div class="hobby-icon">🎬</div>
+                    <h3>K-Dramas & Movies</h3>
+                    <p>I love binge watching Kdrama or movies because time will pass by more quickly.I'm currently watching Would You Marry Me? Also I love to watch horror movies..</p>
+                </div>
+            </div>
+            
+            <!-- K-Drama Section -->
+            <div class="kdrama-section">
+                <h2>My Favorite K-Dramas & Movies</h2>
+                <p>Here are some of my all-time favorite Korean dramas and movies that I highly recommend:</p>
+                
+                <div class="kdrama-grid">
+                    <div class="kdrama-card">
+                        <img src="C:\Users\User\Downloads\Alchemy of Souls.jpeg" alt="Alchemy of Souls" class="kdrama-img">
+                        <div class="kdrama-info">
+                            <div class="kdrama-title">Alchemy of Souls</div>
+                            <div class="kdrama-desc">A South Korean fantasy drama series set in a fictional country called Daeho, where magic, martial arts, and political intrigue all mix together.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="kdrama-card">
+                        <img src="C:\Users\User\Downloads\kdrama2.jpeg" alt="When Life Give You Tangerines" class="kdrama-img">
+                        <div class="kdrama-info">
+                            <div class="kdrama-title">When Life Give You Tangerines</div>
+                            <div class="kdrama-desc">A Korean drama about a woman from Jeju Island and a man who loves her deeply, showing how their lives and love endure through changing times and hardships.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="kdrama-card">
+                        <img src="C:\Users\User\Downloads\Conjuring.jpeg" alt="Conjuring:The Devil Made Me Do It" class="kdrama-img">
+                        <div class="kdrama-info">
+                            <div class="kdrama-title">Conjuring:The Devil Made Me Do It</div>
+                            <div class="kdrama-desc">A horror film where paranormal investigators Ed and Lorraine Warren uncover dark forces behind a murder case that involves demonic possession.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="kdrama-card">
+                        <img src="C:\Users\User\Downloads\woth.jpeg" alt="Whisper of The Heart" class="kdrama-img">
+                        <div class="kdrama-info">
+                            <div class="kdrama-title">Whisper of The Heart</div>
+                            <div class="kdrama-desc">A coming-of-age anime film about a young girl who discovers her passion for writing and dreams while forming a heartfelt connection with a boy who inspires her.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="media-container">
+                <div class="video-container">
+                    <h3>My favorite video</h3>
+                    <video controls>
+                        <source src="C:\Users\User\OneDrive\Pictures\video-website.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="audio-container">
+                    <h3>My favorite song</h3>
+                    <audio controls>
+                        <source src="C:\Users\User\Downloads\ptv.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            </div>
+
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev" data-prev="home">
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" data-next="passions">
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Passions Page -->
+        <section id="passions" class="page">
+            <h1>My Passions</h1>
+            <div class="card">
+                <h2>STUDENT LIFE & LEARNING</h2>
+                <p>Being a student is more than just attending classes for me - it's a passionate pursuit of growth and self-discovery. I embrace the student lifestyle as an opportunity to explore diverse subjects, challenge my perspectives, and build the foundation for my future. Each course, project, and discussion feels like adding another piece to the puzzle of who I'm becoming.</p>
+                <p>I'm passionate about the transformative power of education and the unique environment that student life provides. The late-night study sessions, collaborative projects, and 'aha' moments when concepts finally click - these experiences shape not just my knowledge, but my character and approach to lifelong learning.</p>
+            </div>
+            
+            <div class="card">
+                <h2>MY LOVE TOWARDS MUSIC</h2>
+                <p>My passion for music lies in its incredible ability to speak directly to the soul. As an avid listener, I'm constantly amazed by how melodies and lyrics can capture feelings I struggle to express in words. Music is my emotional anchor and creative inspiration, even from the listener's perspective.</p>
+                <p>Listening to music allows me to experience emotions and stories in ways that words alone cannot convey. Each song feels like uncovering a hidden treasure - a unique emotional landscape that can transport me to different places, memories, and feelings.</p>
+            </div>
+            
+            <div class="card">
+                <h2>PERSONAL GROWTH</h2>
+                <p>I'm deeply passionate about personal growth and becoming the best version of myself. This involves continuous self-reflection, setting meaningful goals, and developing habits that align with my values. I believe that small, consistent improvements compound into significant life changes over time.</p>
+                <p>My passion for personal development stems from the belief that we all have untapped potential waiting to be discovered. I'm committed to pushing my boundaries, overcoming limitations, and helping others do the same through sharing insights and experiences.</p>
+            </div>
+                        
+            <div class="nav-buttons">
+                <button class="nav-btn prev" data-prev="hobbies">
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" data-next="academic">
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Academic Background Page -->
+        <section id="academic" class="page">
+            <h1>Academic Background</h1>
+            <p>My educational journey has been focused on building a strong foundation of knowledge and developing skills that will serve me in my future endeavors. Here's an overview of my academic background:</p>
+            
+            <div class="academic-container">
+                <div class="education">
+                    <h2>Education Timeline</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023 - Present</div>
+                            <div class="timeline-title">UiTM KEDAH</div>
+                            <div class="timeline-desc">Diploma of Information Management<br>Current GPA: 3.28</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2018 - 2022</div>
+                            <div class="timeline-title">SMK TAMAN SELASIH</div>
+                            <div class="timeline-desc">SPM<br>Graduated with honors</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills">
+                    <h2>Academic Skills & Achievements</h2>
+                    <ul class="academic-list">
+                        <li><strong>Technical Skills:</strong> HTML/CSS, JavaScript, Python, Data Analysis</li>
+                        <li><strong>Research Skills:</strong> Academic writing, Data collection, Critical analysis</li>
+                        <li><strong>Academic Honors:</strong> Dean's List (3 semesters), Academic Scholarship recipient</li>
+                        <li><strong>Relevant Coursework:</strong> Web Development, Data Structures, Algorithms, Database Systems</li>
+                        <li><strong>Languages:</strong> English (Native), Spanish (Intermediate)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Academic Images Section -->
+            <div class="academic-images">
+                <h2>Academic Journey in Pictures</h2>
+                <p>Here are some moments from my academic journey that represent my learning experiences and achievements:</p>
+                
+                <div class="academic-image-grid">
+                    <div class="academic-image-card">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="University Campus" class="academic-img">
+                        <div class="academic-img-info">
+                            <div class="academic-img-title">University Life</div>
+                            <div class="academic-img-desc">My campus where I've been pursuing my degree and growing as a student.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="academic-image-card">
+                        <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Study Session" class="academic-img">
+                        <div class="academic-img-info">
+                            <div class="academic-img-title">Study Sessions</div>
+                            <div class="academic-img-desc">Late nights in the library working on assignments and projects.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="academic-image-card">
+                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Group Project" class="academic-img">
+                        <div class="academic-img-info">
+                            <div class="academic-img-title">Collaborative Projects</div>
+                            <div class="academic-img-desc">Working with classmates on group assignments and presentations.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="academic-image-card">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Graduation" class="academic-img">
+                        <div class="academic-img-info">
+                            <div class="academic-img-title">Academic Achievements</div>
+                            <div class="academic-img-desc">Celebrating milestones and accomplishments throughout my education.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Academic Projects & Experience</h2>
+                <p><strong>Web Development Project (2023):</strong> Created a responsive website for a local nonprofit organization, implementing user-friendly design and functionality.</p>
+                <p><strong>Research Paper (2022):</strong> Conducted research on the impact of social media on student mental health, presenting findings in a comprehensive academic paper.</p>
+                <p><strong>Group Project - Mobile App Design (2023):</strong> Collaborated with a team to design and prototype a mobile application for campus navigation and event tracking.</p>
+            </div>
+            
+            <div class="card">
+                <h2>Academic Goals & Aspirations</h2>
+                <p>I'm committed to excelling in my current studies while preparing for future academic and professional opportunities. My immediate goals include maintaining strong academic performance, developing specialized skills in my field of interest, and seeking internship opportunities to apply classroom knowledge in real-world settings.</p>
+                <p>Long-term, I aspire to continue my education through graduate studies and contribute to innovative projects that combine technology with creative problem-solving.</p>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev" data-prev="passions">
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" data-next="contact">
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+        
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <h1>Get In Touch</h1>
+            <p>Follow me on social media to stay updated with my latest projects and content!</p>
+            
+            <div class="social-media">
+                <div class="social-card">
+                    <div class="social-icon instagram">📷</div>
+                    <h3>Instagram</h3>
+                    <p class="social-handle">@alexjohnson</p>
+                    <a href="https://instagram.com/alexjohnson" class="social-btn" target="_blank">Follow Me</a>
+                </div>
+                
+                <div class="social-card">
+                    <div class="social-icon tiktok">🎵</div>
+                    <h3>TikTok</h3>
+                    <p class="social-handle">@alexj_creates</p>
+                    <a href="https://tiktok.com/@alexj_creates" class="social-btn" target="_blank">Follow Me</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Why Connect on Social Media?</h2>
+                <p>On Instagram, I share behind-the-scenes content, academic insights, and personal updates. On TikTok, I create short videos about student life, study tips, and creative projects.</p>
+                <p>Following me on these platforms is the best way to see my latest work and get to know me better!</p>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-btn prev" data-prev="academic">
+                    <span>←</span> Previous
+                </button>
+                <button class="nav-btn next" disabled>
+                    Next <span>→</span>
+                </button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Alex Johnson. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://instagram.com/alexjohnson" target="_blank">📷 Instagram</a>
+                <a href="https://tiktok.com/@alexj_creates" target="_blank">🎵 TikTok</a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Page Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const pages = document.querySelectorAll('.page');
+            const nextButtons = document.querySelectorAll('.nav-btn.next');
+            const prevButtons = document.querySelectorAll('.nav-btn.prev');
+            
+            // Navigation via menu
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all pages and links
+                    pages.forEach(page => page.classList.remove('active'));
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    
+                    // Add active class to current page and link
+                    const targetPage = this.getAttribute('data-page');
+                    document.getElementById(targetPage).classList.add('active');
+                    this.classList.add('active');
+                });
+            });
+            
+            // Next button functionality
+            nextButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.disabled) return;
+                    
+                    const nextPage = this.getAttribute('data-next');
+                    if (nextPage) {
+                        // Remove active class from all pages and links
+                        pages.forEach(page => page.classList.remove('active'));
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        
+                        // Add active class to next page and corresponding link
+                        document.getElementById(nextPage).classList.add('active');
+                        document.querySelector(`.nav-links a[data-page="${nextPage}"]`).classList.add('active');
+                    }
+                });
+            });
+            
+            // Previous button functionality
+            prevButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.disabled) return;
+                    
+                    const prevPage = this.getAttribute('data-prev');
+                    if (prevPage) {
+                        // Remove active class from all pages and links
+                        pages.forEach(page => page.classList.remove('active'));
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        
+                        // Add active class to previous page and corresponding link
+                        document.getElementById(prevPage).classList.add('active');
+                        document.querySelector(`.nav-links a[data-page="${prevPage}"]`).classList.add('active');
+                    }
+                });
+            });
+            
+            // Profile picture upload functionality
+            const imageUpload = document.getElementById('imageUpload');
+            const profilePicture = document.getElementById('profilePicture');
+            
+            if (imageUpload && profilePicture) {
+                imageUpload.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            profilePicture.src = event.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
